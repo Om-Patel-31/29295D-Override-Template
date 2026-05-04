@@ -24,9 +24,16 @@ void autonomous() {
   enableGpsFusion(true);
   enableDistanceFusion(true);
 
-  d(Direction::Forward, 24.0);
-  t(90.0);
-  sd(36.0, 18.0, 90.0);
+  const Direction driveDirection = Direction::Forward;
+  const double driveDistanceInches = 24.0;
+  const double turnTargetHeadingDeg = 90.0;
+  const double targetX = 36.0;
+  const double targetY = 18.0;
+  const double targetHeadingDeg = 90.0;
+
+  d(driveDirection, driveDistanceInches);
+  t(turnTargetHeadingDeg);
+  sd(targetX, targetY, targetHeadingDeg);
 }
 ~~~
 
@@ -44,15 +51,14 @@ void autonomous() {
 ## API Summary
 
 Shorthand:
-- d(Direction::Forward)
-- d(Direction::Forward, 20.0)
-- d(Direction::Forward, 20.0, 60.0, 2000, tuning::kDrivePID)
-- t(90.0)
-- t(90.0, 1500, tuning::kTurnPID)
-- sd(24.0, 36.0, 180.0)
-- sd(24.0, 36.0, 180.0, 55.0, 3000, tuning::kSDriveTune)
+- d(direction, distanceInches)
+- d(direction, distanceInches, velocityPct, timeoutMs, pidTune)
+- t(targetHeadingDeg)
+- t(targetHeadingDeg, timeoutMs, pidTune)
+- sd(targetX, targetY, targetHeadingDeg)
+- sd(targetX, targetY, targetHeadingDeg, velocityPct, timeoutMs, sDriveTune)
 
 Full-length:
-- driveDistance(...)
-- turnToHeading(...)
-- sDriveTo(...)
+- driveDistance(direction, distanceInches, velocityPct, timeoutMs, pidTune)
+- turnToHeading(targetHeadingDeg, timeoutMs, pidTune)
+- driveToCoordinates(targetX, targetY, targetHeadingDeg, velocityPct, timeoutMs, sDriveTune)

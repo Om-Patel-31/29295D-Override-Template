@@ -4,7 +4,7 @@ namespace framework {
 namespace autons {
 
 void test() {
-  driveDistance(Direction::Forward, 12.0);
+  turnToHeading(90.0);
 }
 
 }  // namespace autons

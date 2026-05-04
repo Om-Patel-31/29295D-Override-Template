@@ -22,7 +22,6 @@ struct AutonOption {
 };
 
 AutonOption g_options[] = {
-    {"Safe", autons::safe},
     {"Left Side", autons::leftSide},
     {"Right Side", autons::rightSide},
     {"Skills", autons::skills},

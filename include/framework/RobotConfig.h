@@ -15,9 +15,7 @@ extern vex::motor RightBackMotor;
 
 extern vex::inertial InertialSensor;
 extern vex::rotation LeftRotationA;
-extern vex::rotation LeftRotationB;
 extern vex::rotation RightRotationA;
-extern vex::rotation RightRotationB;
 extern vex::gps GpsSensor;
 extern vex::distance FrontDistanceSensor;
 

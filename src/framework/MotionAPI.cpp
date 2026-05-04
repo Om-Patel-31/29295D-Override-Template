@@ -13,8 +13,8 @@ static double directionSign(Direction direction) {
 }  // namespace
 
 void initializeFramework() {
-  static OdometryTracker odom(LeftRotationA, LeftRotationB, RightRotationA,
-                              RightRotationB, InertialSensor, GpsSensor);
+  static OdometryTracker odom(LeftRotationA, RightRotationA, InertialSensor,
+                              GpsSensor);
   static ChassisController chassis(LeftFrontMotor, LeftBackMotor, RightFrontMotor,
                                    RightBackMotor, odom);
 
@@ -24,9 +24,7 @@ void initializeFramework() {
 
 void resetAutonomousState(double x, double y, double headingDeg) {
   LeftRotationA.resetPosition();
-  LeftRotationB.resetPosition();
   RightRotationA.resetPosition();
-  RightRotationB.resetPosition();
 
   if (g_odom != nullptr) {
     g_odom->rst(x, y, headingDeg);

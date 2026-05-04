@@ -8,13 +8,10 @@ namespace {
 constexpr double kPi = 3.14159265358979323846;
 }
 
-OdometryTracker::OdometryTracker(vex::rotation& leftA, vex::rotation& leftB,
-                                 vex::rotation& rightA, vex::rotation& rightB,
+OdometryTracker::OdometryTracker(vex::rotation& left, vex::rotation& right,
                                  vex::inertial& inertial, vex::gps& gpsSensor)
-    : m_leftA(leftA),
-      m_leftB(leftB),
-      m_rightA(rightA),
-      m_rightB(rightB),
+    : m_left(left),
+      m_right(right),
       m_inertial(inertial),
       m_gps(gpsSensor),
       m_x(0.0),
@@ -24,10 +21,8 @@ OdometryTracker::OdometryTracker(vex::rotation& leftA, vex::rotation& leftB,
       m_prevRightIn(0.0) {}
 
 void OdometryTracker::rst(double x, double y, double headingDeg) {
-  m_leftA.resetPosition();
-  m_leftB.resetPosition();
-  m_rightA.resetPosition();
-  m_rightB.resetPosition();
+  m_left.resetPosition();
+  m_right.resetPosition();
 
   m_x = x;
   m_y = y;
@@ -44,16 +39,10 @@ void OdometryTracker::set(double x, double y, double headingDeg) {
 }
 
 void OdometryTracker::upd() {
-  // Step 1: Convert each side's rotation sensors to linear travel and average each side.
+  // Step 1: Convert the left and right rotation sensors to linear travel.
   // We only use external rotation sensors so drive motor integrated encoders never affect odometry.
-    const double leftIn =
-      (deg2in(m_leftA.position(vex::deg)) +
-       deg2in(m_leftB.position(vex::deg))) /
-      2.0;
-    const double rightIn =
-      (deg2in(m_rightA.position(vex::deg)) +
-       deg2in(m_rightB.position(vex::deg))) /
-      2.0;
+  const double leftIn = deg2in(m_left.position(vex::deg));
+  const double rightIn = deg2in(m_right.position(vex::deg));
 
   // Step 2: Compute incremental chassis motion since last update.
   const double deltaLeft = leftIn - m_prevLeftIn;

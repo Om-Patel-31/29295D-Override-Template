@@ -39,14 +39,23 @@ You can override per command to test quickly.
 Example for drive distance:
 
 ~~~cpp
-d(Direction::Forward, 30.0, 55.0, 2000,
-  tuning::PIDTune{0.92, 0.0008, 0.18, 0.5, 10.0});
+const Direction driveDirection = Direction::Forward;
+const double distanceInches = 30.0;
+const double velocityPct = 55.0;
+const int timeoutMs = 2000;
+const tuning::PIDTune driveTune{0.92, 0.0008, 0.18, 0.5, 10.0};
+
+d(driveDirection, distanceInches, velocityPct, timeoutMs, driveTune);
 ~~~
 
 Example for turn:
 
 ~~~cpp
-t(180.0, 1800, tuning::PIDTune{1.05, 0.0, 0.24, 1.0, 35.0});
+const double targetHeadingDeg = 180.0;
+const int turnTimeoutMs = 1800;
+const tuning::PIDTune turnTune{1.05, 0.0, 0.24, 1.0, 35.0};
+
+t(targetHeadingDeg, turnTimeoutMs, turnTune);
 ~~~
 
 ## Debugging P I D Terms

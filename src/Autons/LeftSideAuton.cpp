@@ -4,9 +4,16 @@ namespace framework {
 namespace autons {
 
 void leftSide() {
-  driveDistance(Direction::Forward, 24.0);
-  turnToHeading(90.0);
-  driveToCoordinates(20.0, 30.0, 90.0);
+  const Direction driveDirection = Direction::Forward;
+  const double driveDistanceInches = 24.0;
+  const double turnTargetHeadingDeg = 90.0;
+  const double targetX = 20.0;
+  const double targetY = 30.0;
+  const double targetHeadingDeg = 90.0;
+
+  driveDistance(driveDirection, driveDistanceInches);
+  turnToHeading(turnTargetHeadingDeg);
+  driveToCoordinates(targetX, targetY, targetHeadingDeg);
 }
 
 }  // namespace autons

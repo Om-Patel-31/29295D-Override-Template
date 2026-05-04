@@ -13,8 +13,7 @@ struct Pose2D {
 
 class OdometryTracker {
  public:
-  OdometryTracker(vex::rotation& leftA, vex::rotation& leftB, vex::rotation& rightA,
-                  vex::rotation& rightB, vex::inertial& inertial,
+  OdometryTracker(vex::rotation& left, vex::rotation& right, vex::inertial& inertial,
                   vex::gps& gpsSensor);
 
   void rst(double x = 0.0, double y = 0.0, double headingDeg = 0.0);
@@ -27,10 +26,8 @@ class OdometryTracker {
   static double herr(double targetDeg, double currentDeg);
 
  private:
-  vex::rotation& m_leftA;
-  vex::rotation& m_leftB;
-  vex::rotation& m_rightA;
-  vex::rotation& m_rightB;
+  vex::rotation& m_left;
+  vex::rotation& m_right;
   vex::inertial& m_inertial;
   vex::gps& m_gps;
 

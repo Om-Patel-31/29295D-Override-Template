@@ -13,7 +13,7 @@ Heading wraps safely using normalizeHeading.
 
 Each odometry update performs:
 
-1. Read left and right rotation sensors (2 per side).
+1. Read left and right rotation sensors (1 per side).
 2. Convert rotation degrees to linear inches.
 3. Compute delta-left and delta-right from previous readings.
 4. Compute forward delta as average of side deltas.
